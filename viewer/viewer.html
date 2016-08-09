@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Viewer</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
+    <link rel="stylesheet" href="https://rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="viewer.css">
+
+</head>
+<body class="blue">
+
+    <div class="container viewer-container">
+        <div class="card viewer-info ">
+
+            <div class="row title-holder">
+                <h5 class="title">
+                  GeoJSON Viewer
+                </h5>
+            </div>
+
+            <div class="row middle">
+                <div class="container map-holder">
+                   <div class="col s12 map" id="map"></div>
+                </div>
+            </div>
+
+            <div class="row url-holder">
+                <div class="container">
+                    <form id="url-input">
+                        <div class="col s6 input-field url-input">
+                           <input placeholder="GeoJSON Endpoint" id="geojson-endpoint" type="text" class="validate">
+                           <!-- <label for="geojson-endpoint">GeoJSON Endpoint to View </label> -->
+                        </div>
+                        <div class="col s6 input-field submit">
+                             <button class="btn light-blue waves-effect waves-light submit-button " type="button" name="action" onclick="viewGeoJson(this)">View
+                             </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="viewer.js"></script>
+</body>
+</html>

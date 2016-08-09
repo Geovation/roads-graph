@@ -1,0 +1,70 @@
+html {
+    background-image: url("../imgs/viewer-background.jpg");
+    background-size: cover;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+}
+
+.title-holder {
+  padding-top: 10px;
+}
+
+.row.middle, .map-holder {
+  height: 60%;
+}
+
+#map {
+  height: 100%;
+}
+
+.container, .viewer-container {
+  height: 100%;
+  position: relative;
+  padding-top:10px;
+}
+
+.viewer-info {
+  height: 90%;
+  min-height: 400px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.url-holder {
+  margin-bottom: 5%;
+  min-height: 100px;
+  margin-bottom: 0px;
+}
+
+.title {
+    text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.submit-button {
+    width: 100%;
+    margin-top: 9px;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
+}
+
+.input-field label {
+ color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
