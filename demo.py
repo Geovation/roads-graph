@@ -1,24 +1,21 @@
 import os
-import pyorient
 import json
+import pyorient
+from flask import Flask, make_response
 
-
-
+# Setup OrientDB
 client = pyorient.OrientDB("localhost", 2424)
-
 client.connect("root", "12Krokodil")
-
 client.db_open("roads", "root", "12Krokodil")
 
-# qu = "select expand(bothE(E)) from (select * from V where  ST_WITHIN(geometry,'POLYGON ((-0.114241 51.379962, -0.097418 51.380123, -0.097504 51.372837, -0.112267 51.372033, -0.114241 51.379962))') = true limit 30000)"
-
-# result = client.query(qu)
-
-
-
-
-from flask import Flask, make_response
+# Setup Flask
 app = Flask(__name__)
+
+@app.route('/')
+@app.route('/viewer')
+def viewer():
+    """Show a map to view the GeoJSON"""
+    return render_template('viewer.html')
 
 @app.route('/roads/<qu>', methods=["GET"])
 def geometries(qu):
@@ -66,7 +63,3 @@ def geometries(qu):
 
 if __name__ == '__main__':
    app.run(debug = True)
-
-
-
-
