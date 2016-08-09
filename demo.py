@@ -1,7 +1,7 @@
 import os
 import json
 import pyorient
-from flask import Flask, make_response
+from flask import Flask, make_response, render_template
 
 # Setup OrientDB
 client = pyorient.OrientDB("localhost", 2424)
@@ -59,6 +59,61 @@ def geometries(qu):
     geojson = {"type": "FeatureCollection",
                "features": geom}
     return make_response(json.dumps(geojson))
+
+
+
+@app.route('/roads/path/', methods=["GET"])
+def geometries2():
+
+    args = request.args
+    if args["start"]:
+        start = '#' + args["start"]  # foo
+        end = '#' + args["end"]  # bar
+        pa = start + ',' + end
+
+    qu = "select expand(shortestPath(" + pa + ").outE())"
+
+    result= client.query(qu)
+    coords = []
+    geom = []
+
+    for j in result:
+
+        d = [i.split(',') for i in j.oRecordData['geometry']['coordinates'].replace("[", "").replace("]]", "").replace("d", "").replace(")", "").split('],')]
+
+        coords.append(d)
+
+    for s in coords:
+
+        poly = []
+
+        for d in s:
+
+            point = [float(d[0]), float(d[1])]
+
+            poly.append(point)
+
+
+        gj = { "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": poly
+
+          },
+        "properties": {
+          "prop0": "value0",
+          "prop1": 0.0
+          }
+        }
+
+        geom.append(gj)
+
+
+    geojson = {"type": "FeatureCollection",
+               "features": geom}
+    print json.dumps(geojson)
+    return make_response(json.dumps(geojson))
+
 
 
 if __name__ == '__main__':
